@@ -6,8 +6,8 @@ import { makeEvent } from './events.js'
 import type { EventLog, GameEvent } from './events.js'
 import { makeRng } from './rng.js'
 import type { RNG } from './rng.js'
-import { CHOICE_POOLS } from '../data/choices.js'
-import type { ChoicePool, ChoiceOption } from '../data/choices.js'
+import { getChoicePool } from '../data/choices/index.js'
+import type { ChoiceOption } from '../data/choices/index.js'
 
 // ---------------------------------------------------------------------------
 // Config and result types
@@ -114,7 +114,8 @@ export function* runMatchGen(
     enemy  = pre.enemy
     emit(...pre.events)
 
-    const pool: ChoicePool = CHOICE_POOLS[pc.choicePoolId]
+    const role = config.playerChampion.roles[0]
+    const pool = getChoicePool(role, pc.choicePoolId)
     const choiceRequest: ChoiceRequest = {
       id: pool.id, phase: pc.phase, situation: pool.situation, options: pool.options,
     }

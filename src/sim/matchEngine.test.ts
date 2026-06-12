@@ -149,7 +149,7 @@ describe('runMatch — choice impact', () => {
   })
 
   it('safe choices produce higher visionControl at match end', () => {
-    const seeds = Array.from({ length: 10 }, (_, i) => i + 200)
+    const seeds = Array.from({ length: 30 }, (_, i) => i + 200)
     const avgSafeVision = seeds
       .map(seed => runMatchFromSeed({ ...config, seed }, safeChoices).finalTeam.visionControl)
       .reduce((a, b) => a + b, 0) / seeds.length

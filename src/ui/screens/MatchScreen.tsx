@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { runMatchGen } from '../../sim/matchEngine.js'
 import type { MatchConfig, MatchStep, MatchResult } from '../../sim/matchEngine.js'
-import type { ChoiceOption } from '../../data/choices.js'
+import type { ChoiceOption } from '../../data/choices/index.js'
 import { makeRng } from '../../sim/rng.js'
 import type { GameEvent } from '../../sim/events.js'
 import type { EventKind } from '../../sim/events.js'
@@ -31,7 +31,8 @@ const EVENT_STYLE: Partial<Record<EventKind, { color: string; prefix: string; di
 
 function EventRow({ event }: { event: GameEvent }) {
   const style = EVENT_STYLE[event.kind] ?? { color: '#8b949e', prefix: '·' }
-  if (event.kind === 'choicePresented') return null  // rendered as panel instead
+  if (event.kind === 'choicePresented') return null
+  if (event.kind === 'csGain') return null  // CS total shown on result screen
 
   return (
     <div style={{

@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { champions } from '../../data/champions/index.js'
 import type { ChampionData } from '../../sim/types.js'
-import type { MatchConfig } from '../../sim/matchEngine.js'
-import { buildConfig } from '../matchDefaults.js'
 
 const ROLE_COLOR: Record<string, string> = {
   top: '#58a6ff', jungle: '#3fb950', mid: '#d2a8ff',
@@ -30,7 +28,7 @@ function ScalingBar({ champion }: { champion: ChampionData }) {
   )
 }
 
-interface Props { onStart: (config: MatchConfig) => void }
+interface Props { onStart: (champion: ChampionData) => void }
 
 export function SetupScreen({ onStart }: Props) {
   const [selected, setSelected] = useState<ChampionData>(champions[0])
@@ -105,7 +103,7 @@ export function SetupScreen({ onStart }: Props) {
       </div>
 
       <button
-        onClick={() => onStart(buildConfig(selected))}
+        onClick={() => onStart(selected)}
         style={{
           background: '#238636', border: '1px solid #2ea043',
           borderRadius: 6, padding: '10px 24px',

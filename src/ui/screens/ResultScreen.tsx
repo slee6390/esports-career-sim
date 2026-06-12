@@ -21,9 +21,9 @@ function ratingColor(n: number) {
   return n >= 70 ? '#3fb950' : n >= 50 ? '#ffa657' : '#f85149'
 }
 
-interface Props { result: MatchResult; onPlayAgain: () => void }
+interface Props { result: MatchResult; onContinue: () => void }
 
-export function ResultScreen({ result, onPlayAgain }: Props) {
+export function ResultScreen({ result, onContinue }: Props) {
   const { won, finalWinChance, evaluation: ev, finalPlayer: p, finalTeam: t } = result
 
   const outcomeColor = won ? '#3fb950' : '#f85149'
@@ -88,7 +88,7 @@ export function ResultScreen({ result, onPlayAgain }: Props) {
       </div>
 
       <button
-        onClick={onPlayAgain}
+        onClick={onContinue}
         style={{
           background: '#21262d', border: '1px solid #30363d',
           borderRadius: 6, padding: '10px 24px',
@@ -96,7 +96,7 @@ export function ResultScreen({ result, onPlayAgain }: Props) {
           letterSpacing: '0.04em', width: '100%',
         }}
       >
-        PLAY AGAIN
+        BACK TO CAREER
       </button>
     </div>
   )
